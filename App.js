@@ -3,6 +3,14 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import {useFonts, Inter_600SemiBold} from '@expo-google-fonts/inter';
+import {VictoryBar, VictoryChart, VictoryAxis} from 'victory-native';
+
+const data = [
+  {quarter: 1, earnings: 13000},
+  {quarter: 2, earnings: 16500},
+  {quarter: 3, earnings: 14250},
+  {quarter: 4, earnings: 19000},
+];
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -15,8 +23,15 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={{fontFamily: 'Inter_600SemiBold'}}>Inter 600 Semi Bold</Text>
-      <StatusBar style="auto" />
+      <VictoryChart width={350}>
+        <VictoryAxis
+          style={{
+            /* this works: `tickLabels: {fontFamily: 'AcademyEngravedLetPlain'},` */
+            tickLabels: {fontFamily: 'Inter_600SemiBold'},
+          }}
+        />
+        <VictoryBar data={data} x="quarter" y="earnings" />
+      </VictoryChart>
     </View>
   );
 }
