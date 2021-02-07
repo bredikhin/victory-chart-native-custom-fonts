@@ -1,11 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
+import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import AppLoading from 'expo-app-loading';
+import {useFonts, Inter_600SemiBold} from '@expo-google-fonts/inter';
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Inter_600SemiBold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={{fontFamily: 'Inter_600SemiBold'}}>Inter 600 Semi Bold</Text>
       <StatusBar style="auto" />
     </View>
   );
